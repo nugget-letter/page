@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>너겟 — 금융 콘텐츠 에이전시</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gmarket+Sans:wght@300;500;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #FF6B35;
+    --yellow: #FFB800;
+    --peach: #FFF3EC;
+    --peach2: #FFE4D4;
+    --dark: #1C1C1C;
+    --mid: #555;
+    --gray: #999;
+    --line: #EBEBEB;
+    --light: #FAF9F7;
+    --white: #FFFFFF;
+    --grad: linear-gradient(135deg, #FFB800 0%, #FF6B35 100%);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans KR', sans-serif; background: var(--white); color: var(--dark); overflow-x: hidden; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 52px; height: 68px;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-logo {
+    font-family: 'Gmarket Sans', sans-serif; font-size: 22px; font-weight: 700;
+    background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 15px; font-weight: 500; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--orange); }
+  .nav-cta {
+    background: var(--grad); color: white; border: none; cursor: pointer;
+    padding: 11px 24px; border-radius: 100px; font-size: 13px; font-weight: 700;
+    font-family: 'Noto Sans KR', sans-serif; transition: opacity 0.2s, transform 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 120px 52px 80px; position: relative; overflow: hidden;
+    background: var(--light);
+  }
+  .hero-blob {
+    position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.28; pointer-events: none;
+  }
+  .blob1 { width: 700px; height: 700px; background: #FFB800; top: -180px; right: -120px; }
+  .blob2 { width: 400px; height: 400px; background: #FF6B35; bottom: -60px; right: 240px; }
+
+  .hero-inner { max-width: 1160px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 420px; gap: 80px; align-items: center; position: relative; z-index: 1; }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: white; border: 1.5px solid var(--peach2);
+    padding: 6px 16px; border-radius: 100px;
+    font-size: 12px; font-weight: 600; color: var(--orange); margin-bottom: 28px;
+  }
+  .hero-tag-dot { width: 7px; height: 7px; background: var(--orange); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+
+  .hero-h {
+    font-family: 'Gmarket Sans', sans-serif;
+    font-size: clamp(40px, 5.5vw, 68px); font-weight: 700;
+    line-height: 1.15; letter-spacing: -0.025em; margin-bottom: 24px;
+  }
+  .hero-h em { font-style: normal; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-desc { font-size: 16px; line-height: 1.85; color: var(--mid); margin-bottom: 40px; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-fill {
+    background: var(--grad); color: white; border: none; cursor: pointer;
+    padding: 15px 30px; border-radius: 100px; font-size: 15px; font-weight: 700;
+    font-family: 'Noto Sans KR', sans-serif; text-decoration: none; display: inline-block;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-fill:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(255,107,53,0.32); }
+  .btn-outline {
+    background: white; border: 1.5px solid var(--line); color: var(--dark); cursor: pointer;
+    padding: 15px 30px; border-radius: 100px; font-size: 15px; font-weight: 500;
+    font-family: 'Noto Sans KR', sans-serif; text-decoration: none; display: inline-block;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--orange); transform: translateY(-2px); }
+
+  /* hero cards */
+  .hero-cards { display: flex; flex-direction: column; gap: 14px; }
+  .hcard {
+    background: white; border-radius: 18px; padding: 22px 26px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    display: flex; align-items: center; gap: 18px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hcard:nth-child(2) { margin-left: 32px; animation-delay: 0.1s; }
+  .hcard:nth-child(3) { animation-delay: 0.2s; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+  .hcard-icon { width: 48px; height: 48px; border-radius: 13px; background: var(--peach); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .hcard-num { font-family: 'Gmarket Sans', sans-serif; font-size: 26px; font-weight: 700; line-height: 1; }
+  .hcard-num span { color: var(--orange); }
+  .hcard-label { font-size: 12px; color: var(--gray); margin-top: 3px; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 100px 52px; }
+  .sec { max-width: 1160px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--orange); border-radius: 2px; }
+  .sec-h {
+    font-family: 'Gmarket Sans', sans-serif; font-size: clamp(30px, 4vw, 52px);
+    font-weight: 700; line-height: 1.15; letter-spacing: -0.02em;
+  }
+  .sec-desc { font-size: 15px; color: var(--mid); line-height: 1.8; margin-top: 12px; }
+
+  /* ── STATS BAND ── */
+  #stats { background: var(--dark); padding: 56px 52px; }
+  .stats-row { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); }
+  .stat-cell { text-align: center; padding: 16px 0; border-right: 1px solid rgba(255,255,255,0.08); }
+  .stat-cell:last-child { border-right: none; }
+  .stat-big { font-family: 'Gmarket Sans', sans-serif; font-size: 44px; font-weight: 700; line-height: 1; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .stat-lbl { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 8px; }
+
+  /* ── CLIENTS LOGO GRID ── */
+  #clients { background: var(--white); }
+  .clients-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 52px; gap: 32px; }
+  .clients-note { font-size: 14px; color: var(--mid); line-height: 1.8; max-width: 320px; }
+  .logo-grid {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    margin-top: 0; margin-bottom: 56px;
+  }
+  .logo-chip {
+    background: var(--light); border-radius: 100px;
+    padding: 12px 24px; font-size: 14px; font-weight: 700; color: var(--mid);
+    border: 1.5px solid transparent; transition: all 0.2s; cursor: default;
+  }
+  .logo-chip:hover { background: var(--peach); color: var(--orange); border-color: var(--peach2); }
+
+  /* case cards */
+  .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 56px; }
+  .case-card {
+    background: var(--light); border-radius: 22px; padding: 44px;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .case-card:hover { background: var(--peach); transform: translateY(-4px); }
+  .case-big { font-family: 'Gmarket Sans', sans-serif; font-size: 64px; font-weight: 700; line-height: 1; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+  .case-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-bottom: 14px; }
+  .case-txt { font-size: 14px; color: var(--mid); line-height: 1.8; }
+
+  /* ── CONTENTS / SERVICES ── */
+  #services { background: var(--light); }
+
+  /* 탭 */
+  .cnt-tabs { display: flex; gap: 0; flex-wrap: wrap; margin-bottom: 40px; border-bottom: 2px solid var(--line); }
+  .cnt-tab {
+    padding: 12px 20px; font-size: 13px; font-weight: 600; color: var(--gray);
+    cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px;
+    transition: color 0.2s, border-color 0.2s; white-space: nowrap;
+  }
+  .cnt-tab:hover { color: var(--orange); }
+  .cnt-tab.active { color: var(--orange); border-bottom-color: var(--orange); }
+
+  /* 콘텐츠 카드 그리드 */
+  .cnt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .cnt-panel { display: none; }
+  .cnt-panel.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .cnt-card {
+    background: white; border-radius: 16px; padding: 24px;
+    border: 1.5px solid var(--line); cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    text-decoration: none; display: block;
+  }
+  .cnt-card:hover { border-color: var(--orange); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(255,107,53,0.1); }
+  .cnt-card-cat { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--orange); background: var(--peach); padding: 3px 10px; border-radius: 100px; display: inline-block; margin-bottom: 12px; }
+  .cnt-card-title { font-family: 'Gmarket Sans', sans-serif; font-size: 15px; font-weight: 700; line-height: 1.4; color: var(--dark); margin-bottom: 10px; }
+  .cnt-card-meta { font-size: 11px; color: var(--gray); display: flex; gap: 10px; }
+  .cnt-view-all { display: flex; justify-content: center; margin-top: 28px; }
+  .cnt-view-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1.5px solid var(--line); color: var(--mid); background: white;
+    padding: 12px 28px; border-radius: 100px; font-size: 13px; font-weight: 600;
+    text-decoration: none; transition: border-color 0.2s, color 0.2s;
+  }
+  .cnt-view-btn:hover { border-color: var(--orange); color: var(--orange); }
+
+  /* 서비스 연결 배너 */
+  .srv-bridge {
+    margin-top: 64px; background: var(--dark); border-radius: 24px;
+    padding: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+  }
+  .srv-bridge-left h3 { font-family: 'Gmarket Sans', sans-serif; font-size: clamp(22px, 3vw, 36px); font-weight: 700; color: white; line-height: 1.3; margin-bottom: 14px; letter-spacing: -0.02em; }
+  .srv-bridge-left p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.85; }
+  .srv-items { display: flex; flex-direction: column; gap: 0; }
+  .srv-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+    transition: padding-left 0.2s; cursor: default;
+  }
+  .srv-item:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
+  .srv-item:hover { padding-left: 8px; }
+  .srv-item-name { font-size: 15px; font-weight: 600; color: white; }
+  .srv-item-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; padding: 3px 10px; border-radius: 100px; border: 1px solid rgba(255,107,53,0.4); color: var(--orange); text-transform: uppercase; }
+
+  @media (max-width: 960px) {
+    .cnt-panel.active { grid-template-columns: repeat(2,1fr); }
+    .srv-bridge { grid-template-columns: 1fr; gap: 36px; padding: 36px 28px; }
+    .cnt-tabs { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+  }
+  @media (max-width: 600px) {
+    .cnt-panel.active { grid-template-columns: 1fr; }
+  }
+
+  /* ── SUBSCRIBE ── */
+  #subscribe { background: var(--light); }
+  .sub-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; margin-top: 64px; }
+  .sub-h { font-family: 'Gmarket Sans', sans-serif; font-size: clamp(28px, 3.8vw, 48px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 18px; }
+  .sub-p { font-size: 15px; color: var(--mid); line-height: 1.85; margin-bottom: 36px; }
+  .sub-list { display: flex; flex-direction: column; }
+  .sub-item { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--line); align-items: flex-start; }
+  .sub-item:first-child { border-top: 1px solid var(--line); }
+  .sub-n { font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.06em; padding-top: 2px; flex-shrink: 0; }
+  .sub-t { font-size: 14px; color: var(--mid); line-height: 1.7; }
+  .sub-t b { color: var(--dark); font-weight: 700; display: block; margin-bottom: 2px; }
+
+  .sub-card { background: white; border-radius: 22px; padding: 42px; box-shadow: 0 4px 32px rgba(0,0,0,0.06); position: sticky; top: 92px; }
+  .sub-card-h { font-family: 'Gmarket Sans', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .sub-card-p { font-size: 13px; color: var(--gray); margin-bottom: 26px; }
+  .ff { margin-bottom: 14px; }
+  .fl { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); display: block; margin-bottom: 6px; }
+  .fi { width: 100%; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 10px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; outline: none; transition: border-color 0.2s; color: var(--dark); background: var(--light); }
+  .fi:focus { border-color: var(--orange); background: white; }
+  .fsub { width: 100%; padding: 14px; background: var(--grad); border: none; border-radius: 100px; color: white; font-size: 14px; font-weight: 700; font-family: 'Noto Sans KR', sans-serif; cursor: pointer; margin-top: 4px; transition: opacity 0.2s, transform 0.2s; }
+  .fsub:hover { opacity: 0.88; transform: translateY(-1px); }
+  .ffoot { font-size: 11px; color: #C8C8C8; text-align: center; margin-top: 10px; }
+  .sub-ok { display: none; text-align: center; padding: 44px 0; }
+  .sub-ok.show { display: block; }
+  .sub-ok-i { font-size: 40px; margin-bottom: 14px; }
+  .sub-ok h3 { font-family: 'Gmarket Sans', sans-serif; font-size: 18px; margin-bottom: 6px; }
+  .sub-ok p { font-size: 13px; color: var(--gray); }
+
+  /* ── CAREERS ── */
+  #careers { background: var(--white); }
+  .careers-wrap { margin-top: 56px; }
+  .open-pill { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #2E7D32; background: #E8F5E9; padding: 6px 14px; border-radius: 100px; margin-bottom: 24px; }
+  .open-dot { width: 6px; height: 6px; background: #4CAF50; border-radius: 50%; animation: blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .jd-card { background: var(--light); border-radius: 22px; overflow: hidden; border: 1.5px solid var(--line); }
+  .jd-top { padding: 36px 44px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+  .jd-tags { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 14px; }
+  .jtag { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 4px 11px; border-radius: 100px; }
+  .jtag-o { background: var(--peach); color: var(--orange); }
+  .jtag-g { background: #E8F5E9; color: #2E7D32; }
+  .jtag-a { background: #FFF8E1; color: #E65100; }
+  .jd-name { font-family: 'Gmarket Sans', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+  .jd-desc { font-size: 14px; color: var(--mid); line-height: 1.8; max-width: 520px; margin-bottom: 14px; }
+  .jd-meta { display: flex; gap: 16px; flex-wrap: wrap; }
+  .jd-meta span { font-size: 12px; color: var(--gray); }
+  .jd-link-btn {
+    flex-shrink: 0; background: var(--grad); color: white; text-decoration: none;
+    padding: 12px 24px; border-radius: 100px; font-size: 13px; font-weight: 700;
+    transition: opacity 0.2s, transform 0.2s; white-space: nowrap; align-self: flex-start;
+    display: inline-block;
+  }
+  .jd-link-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .talent-box { margin-top: 18px; padding: 34px 44px; background: var(--dark); border-radius: 22px; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .talent-box h3 { font-family: 'Gmarket Sans', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 4px; }
+  .talent-box p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+  .talent-btn { flex-shrink: 0; background: white; color: var(--dark); text-decoration: none; padding: 11px 22px; border-radius: 100px; font-size: 12px; font-weight: 700; transition: background 0.2s, color 0.2s; white-space: nowrap; }
+  .talent-btn:hover { background: var(--orange); color: white; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--peach); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; margin-top: 64px; align-items: start; }
+  .contact-h { font-family: 'Gmarket Sans', sans-serif; font-size: clamp(30px, 4vw, 52px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 18px; }
+  .contact-p { font-size: 15px; color: var(--mid); line-height: 1.9; margin-bottom: 36px; }
+  .contact-direct { background: white; border-radius: 16px; padding: 24px 28px; }
+  .direct-lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); margin-bottom: 6px; }
+  .direct-email { font-family: 'Gmarket Sans', sans-serif; font-size: 17px; font-weight: 700; color: var(--dark); text-decoration: none; transition: color 0.2s; display: block; }
+  .direct-email:hover { color: var(--orange); }
+
+  .cf-box { background: white; border-radius: 22px; padding: 44px; box-shadow: 0 4px 32px rgba(0,0,0,0.06); }
+  .cf-h { font-family: 'Gmarket Sans', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .cf-p { font-size: 13px; color: var(--gray); line-height: 1.7; margin-bottom: 24px; }
+  .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+  .cff { display: flex; flex-direction: column; gap: 6px; margin-bottom: 13px; }
+  .cfl { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
+  .cfi, .cfs, .cft { padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 10px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; color: var(--dark); outline: none; transition: border-color 0.2s; background: var(--light); }
+  .cfi:focus, .cfs:focus, .cft:focus { border-color: var(--orange); background: white; }
+  .cft { resize: vertical; min-height: 90px; line-height: 1.7; }
+  .cfs { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; background-color: var(--light); }
+  .cfbtn { width: 100%; padding: 14px; background: var(--grad); border: none; border-radius: 100px; color: white; font-size: 14px; font-weight: 700; font-family: 'Noto Sans KR', sans-serif; cursor: pointer; transition: opacity 0.2s, transform 0.2s; }
+  .cfbtn:hover { opacity: 0.88; transform: translateY(-1px); }
+  .cffoot { font-size: 11px; color: #C4C4C4; text-align: center; margin-top: 10px; }
+  .cf-done { display: none; text-align: center; padding: 52px 0; }
+  .cf-done.show { display: block; }
+  .cf-done-i { font-size: 40px; margin-bottom: 14px; }
+  .cf-done h3 { font-family: 'Gmarket Sans', sans-serif; font-size: 18px; margin-bottom: 8px; }
+  .cf-done p { font-size: 14px; color: var(--gray); line-height: 1.8; }
+
+  /* ── TICKER ── */
+  #ticker {
+    background: var(--dark); padding: 0;
+    display: flex; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden; height: 48px;
+  }
+  .ticker-label {
+    flex-shrink: 0; background: var(--grad);
+    padding: 0 20px; height: 100%;
+    display: flex; align-items: center;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: white; white-space: nowrap;
+    z-index: 1;
+  }
+  .ticker-wrap { overflow: hidden; flex: 1; position: relative; }
+  .ticker-wrap::after {
+    content: ''; position: absolute; right: 0; top: 0; bottom: 0;
+    width: 80px;
+    background: linear-gradient(to right, transparent, var(--dark));
+    pointer-events: none; z-index: 1;
+  }
+  .ticker-track {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0;
+    width: max-content;
+    animation: ticker 40s linear infinite;
+    will-change: transform;
+  }
+  .ticker-track:hover { animation-play-state: paused; }
+  @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .ticker-item {
+    font-size: 13px; color: rgba(255,255,255,0.7);
+    white-space: nowrap; padding: 0 4px;
+    transition: color 0.2s; cursor: default;
+  }
+  .ticker-item:hover { color: var(--orange); }
+  .ticker-cat {
+    font-size: 10px; font-weight: 700; color: var(--orange);
+    background: rgba(255,107,53,0.12); padding: 2px 8px;
+    border-radius: 100px; margin-right: 8px; letter-spacing: 0.04em;
+  }
+  .ticker-sep { color: rgba(255,255,255,0.2); padding: 0 20px; font-size: 10px; flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  footer { border-top: 1px solid var(--line); padding: 42px 52px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; background: var(--white); }
+  .footer-logo { font-family: 'Gmarket Sans', sans-serif; font-size: 18px; font-weight: 700; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .footer-info { font-size: 11px; color: #C4C4C4; line-height: 1.8; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 12px; font-weight: 500; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--orange); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    section { padding: 72px 24px; }
+    #hero { padding: 100px 24px 60px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+    #stats { padding: 44px 24px; }
+    .stats-row { grid-template-columns: repeat(2,1fr); gap: 16px; }
+    .stat-cell { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .stat-cell:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.08); }
+    .clients-head { flex-direction: column; align-items: flex-start; }
+    .case-grid { grid-template-columns: 1fr; }
+    .sub-layout { grid-template-columns: 1fr; gap: 52px; }
+    .sub-card { position: static; }
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .cf-row { grid-template-columns: 1fr; }
+    .jd-top { flex-direction: column; }
+    .talent-box { flex-direction: column; align-items: flex-start; }
+    footer { padding: 36px 24px; flex-direction: column; align-items: flex-start; }
+    .slider-wrap { margin: 0 -24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">nugget.</a>
+  <ul class="nav-links">
+    <li><a href="#services">너겟이 하는 일</a></li>
+    <li><a href="#subscribe">구독하기</a></li>
+    <li><a href="#clients">함께한 기업들</a></li>
+    <li><a href="#careers">같이 일해요</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">파트너십 문의</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag"><span class="hero-tag-dot"></span>사회초년생의 첫번째 경제 뉴스레터</div>
+      <h1 class="hero-h">
+        금융이 어렵다는<br>
+        <em>고정관념을</em><br>
+        콘텐츠로 깹니다
+      </h1>
+      <p class="hero-desc">
+        1.5만 명이 매일 아침 읽는 경제 뉴스레터.<br>
+        KB국민은행, 카카오, 네이버도 선택한<br>
+        금융 콘텐츠 파트너예요.
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-fill">B2B 파트너십 문의</a>
+        <a href="#subscribe" class="btn-outline">무료 구독하기</a>
+      </div>
+    </div>
+    <div class="hero-cards">
+      <div class="hcard">
+        <div class="hcard-icon">📬</div>
+        <div><div class="hcard-num"><span>1.5만+</span></div><div class="hcard-label">뉴스레터 구독자</div></div>
+      </div>
+      <div class="hcard">
+        <div class="hcard-icon">📈</div>
+        <div><div class="hcard-num">MAU <span>5배</span> 증가</div><div class="hcard-label">콘텐츠 도입 후 고객사 성과</div></div>
+      </div>
+      <div class="hcard">
+        <div class="hcard-icon">🏢</div>
+        <div><div class="hcard-num"><span>13+</span> 파트너사</div><div class="hcard-label">KB, 카카오, 삼성 등</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT TICKER -->
+<div id="ticker">
+  <div class="ticker-label">최신 콘텐츠</div>
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="ticker-cat">대왕 너겟</span>임박한 미 대선, 우리나라 경제엔 누가 더 유리할까?</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">경제 상식</span>코인 투자하면서 꼬박꼬박 이자도 받을 수 있다고?</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">대왕 너겟</span>최고가 찍은 금값, 지금 사면 늦은 거야?</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">한입 너겟</span>산타랠리 타고 다시 오르는 비트코인 📈</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">대왕 너겟</span>일본 여행이 다시 뜨는 이유</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">주식</span>어닝 서프라이즈인데 주가는 왜 떨어져?</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">대왕 너겟</span>한때 1등이었던 폭스바겐이 추락한 이유</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">협업</span>32조 추경, 새 정부의 경제 살리기 레슨 🧑‍🏫</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">경제 상식</span>금리 역주행 중인 저축은행 예금, 가입해도 괜찮을까?</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">한입 너겟</span>혼다 X 닛산: "우리 합병해요!" 🚗</span>
+      <span class="ticker-sep">✦</span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker-item"><span class="ticker-cat">대왕 너겟</span>임박한 미 대선, 우리나라 경제엔 누가 더 유리할까?</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">경제 상식</span>코인 투자하면서 꼬박꼬박 이자도 받을 수 있다고?</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">대왕 너겟</span>최고가 찍은 금값, 지금 사면 늦은 거야?</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">한입 너겟</span>산타랠리 타고 다시 오르는 비트코인 📈</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">대왕 너겟</span>일본 여행이 다시 뜨는 이유</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">주식</span>어닝 서프라이즈인데 주가는 왜 떨어져?</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">대왕 너겟</span>한때 1등이었던 폭스바겐이 추락한 이유</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">협업</span>32조 추경, 새 정부의 경제 살리기 레슨 🧑‍🏫</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">경제 상식</span>금리 역주행 중인 저축은행 예금, 가입해도 괜찮을까?</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><span class="ticker-cat">한입 너겟</span>혼다 X 닛산: "우리 합병해요!" 🚗</span>
+      <span class="ticker-sep">✦</span>
+    </div>
+  </div>
+</div>
+<div id="stats">
+  <div class="stats-row">
+    <div class="stat-cell"><div class="stat-big">1.5만+</div><div class="stat-lbl">뉴스레터 구독자 수</div></div>
+    <div class="stat-cell"><div class="stat-big">5배</div><div class="stat-lbl">고객사 MAU 평균 증가</div></div>
+    <div class="stat-cell"><div class="stat-big">38%</div><div class="stat-lbl">뉴스레터 평균 오픈율</div></div>
+    <div class="stat-cell"><div class="stat-big">3만+</div><div class="stat-lbl">일일 콘텐츠 뷰 증가</div></div>
+  </div>
+</div>
+
+<!-- CLIENTS -->
+<section id="clients">
+  <div class="sec">
+    <div class="clients-head">
+      <div>
+        <div class="eyebrow">Clients</div>
+        <h2 class="sec-h">함께한<br>기업들</h2>
+        <p class="sec-desc" style="margin-top:10px;">B2B 콘텐츠 파트너 13곳+, 광고 파트너 6곳+</p>
+      </div>
+      <p class="clients-note">국내 대형 금융사부터 핀테크 스타트업까지,<br>너겟의 콘텐츠를 믿고 맡겨준 기업들이에요.</p>
+    </div>
+  </div>
+
+  <!-- 로고 그리드 -->
+  <div class="sec">
+    <div class="logo-grid">
+      <div class="logo-chip">KB국민은행</div>
+      <div class="logo-chip">카카오</div>
+      <div class="logo-chip">네이버</div>
+      <div class="logo-chip">케이뱅크</div>
+      <div class="logo-chip">미래에셋증권</div>
+      <div class="logo-chip">네이버페이</div>
+      <div class="logo-chip">삼성</div>
+      <div class="logo-chip">삼양</div>
+      <div class="logo-chip">모인</div>
+      <div class="logo-chip">뉴닉</div>
+      <div class="logo-chip">PRAP</div>
+      <div class="logo-chip">퀀트랙</div>
+      <div class="logo-chip">AKROS</div>
+      <div class="logo-chip">문화체육관광부</div>
+      <div class="logo-chip">Travel Wallet</div>
+      <div class="logo-chip">teamwink</div>
+      <div class="logo-chip">BBRIC</div>
+      <div class="logo-chip">동양북스</div>
+      <div class="logo-chip">SIL</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="case-grid">
+      <div class="case-card">
+        <div class="case-big">×5</div>
+        <div class="case-tag">고객사 A — MAU 증가</div>
+        <div class="case-txt">너겟 콘텐츠를 도입한 후 월간 활성 사용자가 10만에서 50만으로 늘었어요. 콘텐츠가 재방문의 이유가 됩니다.</div>
+      </div>
+      <div class="case-card">
+        <div class="case-big">3만+</div>
+        <div class="case-tag">고객사 A — 일일 View 증가</div>
+        <div class="case-txt">콘텐츠 도입 이후 하루 조회 수가 3만 명 이상 늘었어요. 체류 시간과 재방문율이 함께 올랐습니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENTS & SERVICES -->
+<section id="services">
+  <div class="sec">
+    <div class="eyebrow">Contents</div>
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:36px; flex-wrap:wrap;">
+      <h2 class="sec-h">너겟이 만드는<br>콘텐츠</h2>
+      <p style="font-size:14px; color:var(--mid); line-height:1.8; max-width:340px;">엄선한 콘텐츠를 통해 경제 이슈를 쉽게 만나보세요.<br>이런 콘텐츠를 만들기 때문에, 이런 서비스가 가능합니다.</p>
+    </div>
+
+    <!-- 카테고리 탭 -->
+    <div class="cnt-tabs">
+      <div class="cnt-tab active" data-tab="all">전체</div>
+      <div class="cnt-tab" data-tab="daewang">대왕 너겟</div>
+      <div class="cnt-tab" data-tab="sangsik">경제 상식을 콕콕</div>
+      <div class="cnt-tab" data-tab="hanip">한입 너겟</div>
+      <div class="cnt-tab" data-tab="stock">주식</div>
+      <div class="cnt-tab" data-tab="realestate">부동산</div>
+      <div class="cnt-tab" data-tab="branded">브랜디드콘텐츠</div>
+    </div>
+
+    <!-- 전체 -->
+    <div class="cnt-panel active" id="tab-all">
+      <a href="https://nugget.im/contents/?bmode=view&idx=166886832&t=board" target="_blank" class="cnt-card"><span class="cnt-card-cat">협업</span><div class="cnt-card-title">32조 추경, 새 정부의 경제 살리기 레슨 🧑‍🏫</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents/?bmode=view&idx=125258450&t=board" target="_blank" class="cnt-card"><span class="cnt-card-cat">대왕 너겟</span><div class="cnt-card-title">임박한 미 대선, 우리나라 경제엔 누가 더 유리할까?</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents/?bmode=view&idx=125257991&t=board" target="_blank" class="cnt-card"><span class="cnt-card-cat">대왕 너겟</span><div class="cnt-card-title">일본 여행이 다시 뜨는 이유</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents/?bmode=view&idx=125257745&t=board" target="_blank" class="cnt-card"><span class="cnt-card-cat">대왕 너겟</span><div class="cnt-card-title">어닝 서프라이즈인데 주가는 왜 떨어져?</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents/?bmode=view&idx=124172888&t=board" target="_blank" class="cnt-card"><span class="cnt-card-cat">대왕 너겟</span><div class="cnt-card-title">최고가 찍은 금값, 지금 사면 늦은 거야?</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents/?bmode=view&idx=124171242&t=board" target="_blank" class="cnt-card"><span class="cnt-card-cat">대왕 너겟</span><div class="cnt-card-title">미국: "TSMC가 왜 거기서 나와?" 🙄</div><div class="cnt-card-meta"></div></a>
+    </div>
+
+    <!-- 대왕 너겟 -->
+    <div class="cnt-panel" id="tab-daewang">
+      <a href="https://nugget.im/contents/?bmode=view&idx=125258450&t=board" target="_blank" class="cnt-card"><span class="cnt-card-cat">대왕 너겟</span><div class="cnt-card-title">임박한 미 대선, 우리나라 경제엔 누가 더 유리할까?</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents/?bmode=view&idx=125257991&t=board" target="_blank" class="cnt-card"><span class="cnt-card-cat">대왕 너겟</span><div class="cnt-card-title">일본 여행이 다시 뜨는 이유</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents/?bmode=view&idx=125257745&t=board" target="_blank" class="cnt-card"><span class="cnt-card-cat">대왕 너겟</span><div class="cnt-card-title">어닝 서프라이즈인데 주가는 왜 떨어져?</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents/?bmode=view&idx=125257429&t=board" target="_blank" class="cnt-card"><span class="cnt-card-cat">대왕 너겟</span><div class="cnt-card-title">한때 1등이었던 폭스바겐이 추락한 이유</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents/?bmode=view&idx=124172888&t=board" target="_blank" class="cnt-card"><span class="cnt-card-cat">대왕 너겟</span><div class="cnt-card-title">최고가 찍은 금값, 지금 사면 늦은 거야?</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents/?bmode=view&idx=124171854&t=board" target="_blank" class="cnt-card"><span class="cnt-card-cat">대왕 너겟</span><div class="cnt-card-title">끝인데 끝이 아닌 고려아연 경영권 분쟁</div><div class="cnt-card-meta"></div></a>
+    </div>
+
+    <!-- 경제 상식을 콕콕 -->
+    <div class="cnt-panel" id="tab-sangsik">
+      <a href="https://nugget.im/contents?category=rc7a303WO0" target="_blank" class="cnt-card"><span class="cnt-card-cat">경제 상식을 콕콕</span><div class="cnt-card-title">코인 투자하면서 꼬박꼬박 이자도 받을 수 있다고?</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents?category=rc7a303WO0" target="_blank" class="cnt-card"><span class="cnt-card-cat">경제 상식을 콕콕</span><div class="cnt-card-title">금리 역주행 중인 저축은행 예금, 가입해도 괜찮을까?</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents?category=rc7a303WO0" target="_blank" class="cnt-card"><span class="cnt-card-cat">경제 상식을 콕콕</span><div class="cnt-card-title">당첨되면 20억? 부동산 '줍줍'이 화제인 이유</div><div class="cnt-card-meta"></div></a>
+    </div>
+
+    <!-- 한입 너겟 -->
+    <div class="cnt-panel" id="tab-hanip">
+      <a href="https://nugget.im/contents?category=M5t46WVGx4" target="_blank" class="cnt-card"><span class="cnt-card-cat">한입 너겟</span><div class="cnt-card-title">러브를 새로 하는 K-조선 🚢</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents?category=M5t46WVGx4" target="_blank" class="cnt-card"><span class="cnt-card-cat">한입 너겟</span><div class="cnt-card-title">산타랠리 타고 다시 오르는 비트코인 📈</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents?category=M5t46WVGx4" target="_blank" class="cnt-card"><span class="cnt-card-cat">한입 너겟</span><div class="cnt-card-title">혼다 X 닛산: "우리 합병해요!" 🚗</div><div class="cnt-card-meta"></div></a>
+    </div>
+
+    <!-- 주식 -->
+    <div class="cnt-panel" id="tab-stock">
+      <a href="https://nugget.im/contents?category=67TTH6Ag7X" target="_blank" class="cnt-card"><span class="cnt-card-cat">주식</span><div class="cnt-card-title">어닝 서프라이즈인데 주가는 왜 떨어져?</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents?category=67TTH6Ag7X" target="_blank" class="cnt-card"><span class="cnt-card-cat">주식</span><div class="cnt-card-title">미국: "TSMC가 왜 거기서 나와?" 🙄</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents?category=67TTH6Ag7X" target="_blank" class="cnt-card"><span class="cnt-card-cat">주식</span><div class="cnt-card-title">한때 1등이었던 폭스바겐이 추락한 이유</div><div class="cnt-card-meta"></div></a>
+    </div>
+
+    <!-- 부동산 -->
+    <div class="cnt-panel" id="tab-realestate">
+      <a href="https://nugget.im/contents?category=62323xxC2s" target="_blank" class="cnt-card"><span class="cnt-card-cat">부동산</span><div class="cnt-card-title">당첨되면 20억? 부동산 '줍줍'이 화제인 이유</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents?category=62323xxC2s" target="_blank" class="cnt-card"><span class="cnt-card-cat">부동산</span><div class="cnt-card-title">역대급 세수 펑크에 정부는 기금 영끌?</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents?category=62323xxC2s" target="_blank" class="cnt-card"><span class="cnt-card-cat">부동산</span><div class="cnt-card-title">한전: "더는 못 버티겠어"</div><div class="cnt-card-meta"></div></a>
+    </div>
+
+    <!-- 브랜디드 -->
+    <div class="cnt-panel" id="tab-branded">
+      <a href="https://nugget.im/contents?category=O08i57Z14u" target="_blank" class="cnt-card"><span class="cnt-card-cat">브랜디드콘텐츠</span><div class="cnt-card-title">케이뱅크랑 K-패스해! — 케이뱅크 × 너겟</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents?category=O08i57Z14u" target="_blank" class="cnt-card"><span class="cnt-card-cat">브랜디드콘텐츠</span><div class="cnt-card-title">미국 주식 나도 할 수 있어 수수수수퍼노바 💪 — 미래에셋 × 너겟</div><div class="cnt-card-meta"></div></a>
+      <a href="https://nugget.im/contents?category=O08i57Z14u" target="_blank" class="cnt-card"><span class="cnt-card-cat">브랜디드콘텐츠</span><div class="cnt-card-title">부동산 이제 [원하는] 만큼 투자하자! — BBRIC × 너겟</div><div class="cnt-card-meta"></div></a>
+    </div>
+
+    <!-- 전체 보기 버튼 -->
+    <div class="cnt-view-all">
+      <a href="https://nugget.im/contents" target="_blank" class="cnt-view-btn">너겟 콘텐츠 전체 보기 →</a>
+    </div>
+
+    <!-- 서비스 연결 배너 -->
+    <div class="srv-bridge">
+      <div class="srv-bridge-left">
+        <h3>이런 콘텐츠를<br>만드니까,<br>이런 게 가능해요</h3>
+        <p>5년간 쌓아온 금융 콘텐츠 노하우.<br>너겟의 콘텐츠를 우리 회사에서도 쓸 수 있어요.</p>
+      </div>
+      <div class="srv-items">
+        <div class="srv-item"><span class="srv-item-name">콘텐츠 라이선스</span><span class="srv-item-tag">License</span></div>
+        <div class="srv-item"><span class="srv-item-name">맞춤 콘텐츠 제작</span><span class="srv-item-tag">Bespoke</span></div>
+        <div class="srv-item"><span class="srv-item-name">콘텐츠 운영 대행</span><span class="srv-item-tag">Turnkey</span></div>
+        <div class="srv-item"><span class="srv-item-name">뉴스레터 광고</span><span class="srv-item-tag">Ad</span></div>
+        <div class="srv-item"><span class="srv-item-name">사내 교육 콘텐츠</span><span class="srv-item-tag">Education</span></div>
+        <div style="margin-top:24px;">
+          <a href="#contact" class="btn-fill" style="font-size:13px; padding:13px 26px;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); return false;">파트너십 문의하기 →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBSCRIBE -->
+<section id="subscribe">
+  <div class="sec">
+    <div class="eyebrow">Newsletter</div>
+    <div class="sub-layout">
+      <div>
+        <h2 class="sub-h">너겟 뉴스레터<br>구독하기</h2>
+        <p class="sub-p">세상의 돈이 움직이는 이야기 수만 가지 중<br>사회초년생에게 꼭 필요한 소식만<br>쉽고 재밌게 큐레이션했어요.</p>
+        <div class="sub-list">
+          <div class="sub-item"><span class="sub-n">01</span><div class="sub-t"><b>매주 월·수·금 오전 6시 발송</b>하루를 시작하기 전, 경제 흐름을 먼저 파악하세요.</div></div>
+          <div class="sub-item"><span class="sub-n">02</span><div class="sub-t"><b>꼭 필요한 경제 뉴스만</b>복잡한 경제 이슈를 너겟만의 스타일로 쉽고 재밌게 풀어드려요.</div></div>
+          <div class="sub-item"><span class="sub-n">03</span><div class="sub-t"><b>재테크 상식 콘텐츠</b>주식, 부동산, 암호화폐 등 작은 월급을 불리는 방법도 알려드려요.</div></div>
+          <div class="sub-item"><span class="sub-n">04</span><div class="sub-t"><b>무료지만, 알차요</b>구독료 없이 매일 아침 메일함으로 도착해요. 언제든 부담 없이 해지 가능.</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="sub-card" style="text-align:center; padding: 52px 44px;">
+          <div style="font-size:48px; margin-bottom:20px;">📬</div>
+          <div class="sub-card-h" style="font-size:22px; margin-bottom:12px;">1.5만 명이 읽는<br>경제 뉴스레터</div>
+          <p style="font-size:14px; color:var(--gray); line-height:1.8; margin-bottom:8px;">매주 월·수·금 오전 6시</p>
+          <p style="font-size:13px; color:var(--gray); line-height:1.8; margin-bottom:32px;">무료로 구독할 수 있어요 :)</p>
+          <a href="https://page.stibee.com/subscriptions/132031" target="_blank" class="fsub" style="display:block; text-decoration:none; border-radius:100px;">무료로 구독 시작하기 →</a>
+          <div class="ffoot" style="margin-top:16px;">스팸 메일은 절대 보내지 않아요.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREERS -->
+<section id="careers">
+  <div class="sec">
+    <div class="eyebrow">Careers</div>
+    <h2 class="sec-h">너겟과 함께<br>일할 분을 찾아요</h2>
+    <p class="sec-desc">경제·금융의 문턱을 낮추는 일, 같이 해봐요.</p>
+    <div class="careers-wrap">
+      <div class="open-pill"><span class="open-dot"></span>현재 채용 중 · 1개 포지션</div>
+      <div class="jd-card">
+        <div class="jd-top">
+          <div>
+            <div class="jd-tags"><span class="jtag jtag-o">에디터</span><span class="jtag jtag-g">정규직</span><span class="jtag jtag-a">상시 채용</span></div>
+            <div class="jd-name">콘텐츠 에디터 <span style="font-size:14px; font-family:'Noto Sans KR'; font-weight:400; color:var(--gray);">(Text Contents)</span></div>
+            <div class="jd-desc">1.5만 구독자와 함께하는 너겟 뉴스레터의 텍스트 콘텐츠를 기획·작성해요. B2B 고객사 콘텐츠 제작과 외부 기고글 편집도 담당해요.</div>
+            <div class="jd-meta"><span>📍 서울 구로구</span><span>🕐 09~18 / 10~19 선택</span><span>💼 2년 이상</span><span>💻 Mac 제공</span></div>
+          </div>
+          <a href="https://nugget.careers.team/job-descriptions/MG0pOX98YO" target="_blank" class="jd-link-btn">상세보기 →</a>
+        </div>
+      </div>
+      <div class="talent-box">
+        <div><h3>딱 맞는 포지션이 없나요?</h3><p>너겟은 언제나 좋은 분을 기다리고 있어요.<br>관심 있으면 편하게 메일 보내주세요!</p></div>
+        <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#110;&#117;&#103;&#103;&#101;&#116;&#46;&#105;&#109;?subject=%5B%EC%A7%80%EC%9B%90%20%EB%AC%B8%EC%9D%98%5D%20%EC%9D%B4%EB%A6%84%20%2F%20%EA%B4%80%EC%8B%AC%20%EC%A7%81%EA%B5%B0" class="talent-btn">메일 보내기</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec">
+    <div class="eyebrow">Contact</div>
+    <div class="contact-grid">
+      <div>
+        <h2 class="contact-h">함께<br>만들어봐요 :)</h2>
+        <p class="contact-p">너겟과 함께하고 싶은 프로젝트가 있나요?<br>간단한 정보를 남겨주시면 검토 후 빠르게 연락드릴게요.</p>
+        <div class="contact-direct">
+          <div class="direct-lbl">Direct e-mail</div>
+          <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#110;&#117;&#103;&#103;&#101;&#116;&#46;&#105;&#109;" class="direct-email">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#110;&#117;&#103;&#103;&#101;&#116;&#46;&#105;&#109;</a>
+        </div>
+      </div>
+      <div>
+        <div class="cf-box">
+          <div id="cf-wrap">
+            <div class="cf-h">프로젝트 문의하기</div>
+            <div class="cf-p">어떤 내용이든 괜찮아요. 남겨주시면 꼼꼼히 읽고 연락드릴게요.</div>
+            <div class="cf-row">
+              <div class="cff"><label class="cfl">회사명</label><input class="cfi" id="cf-co" type="text" placeholder="주식회사 너겟"></div>
+              <div class="cff"><label class="cfl">담당자명</label><input class="cfi" id="cf-nm" type="text" placeholder="홍길동"></div>
+            </div>
+            <div class="cff"><label class="cfl">이메일</label><input class="cfi" id="cf-em" type="email" placeholder="hello@company.com"></div>
+            <div class="cff">
+              <label class="cfl">문의 유형</label>
+              <select class="cfs" id="cf-tp">
+                <option value="">선택해주세요</option>
+                <option>콘텐츠 라이선스</option>
+                <option>맞춤 콘텐츠 제작</option>
+                <option>콘텐츠 운영 대행</option>
+                <option>뉴스레터 광고</option>
+                <option>사내 교육 콘텐츠</option>
+                <option>기타 문의</option>
+              </select>
+            </div>
+            <div class="cff"><label class="cfl">문의 내용</label><textarea class="cft" id="cf-msg" placeholder="어떤 프로젝트인지 편하게 적어주세요 :)"></textarea></div>
+            <button class="cfbtn" id="cf-btn">문의 보내기</button>
+            <div class="cffoot">보통 1영업일 안에 답장 드려요.</div>
+          </div>
+          <div class="cf-done" id="cf-done">
+            <div class="cf-done-i">✅</div>
+            <h3>잘 받았어요! ✅</h3>
+            <p>꼼꼼히 읽고<br>빠르게 연락드릴게요 :)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">nugget.</div>
+  <div class="footer-info">주식회사 너겟 · 사업자등록번호 463-81-30341<br>개인정보보호책임자: 이지원 · &#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#110;&#117;&#103;&#103;&#101;&#116;&#46;&#105;&#109;</div>
+  <div class="footer-links"><a href="#">이용약관</a><a href="#">개인정보처리방침</a><a href="https://nugget.im" target="_blank">기존 사이트</a></div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Content tabs
+  document.querySelectorAll('.cnt-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      document.querySelectorAll('.cnt-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.cnt-panel').forEach(p => p.classList.remove('active'));
+      this.classList.add('active');
+      document.getElementById('tab-' + this.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Subscribe
+  document.getElementById('s-btn').addEventListener('click', function () {
+    const name = document.getElementById('s-name').value.trim();
+    const email = document.getElementById('s-email').value.trim();
+    if (!name || !email || !email.includes('@')) { alert('이름과 올바른 이메일을 입력해주세요.'); return; }
+    document.getElementById('sub-area').style.display = 'none';
+    document.getElementById('sub-ok').classList.add('show');
+  });
+
+  // Contact form
+  document.getElementById('cf-btn').addEventListener('click', function () {
+    const co = document.getElementById('cf-co').value.trim();
+    const nm = document.getElementById('cf-nm').value.trim();
+    const em = document.getElementById('cf-em').value.trim();
+    const tp = document.getElementById('cf-tp').value;
+    if (!co || !nm || !em || !tp) { alert('필수 항목을 모두 입력해주세요.'); return; }
+    if (!em.includes('@')) { alert('올바른 이메일 주소를 입력해주세요.'); return;   }
+    document.getElementById('cf-wrap').style.display = 'none';
+    document.getElementById('cf-done').classList.add('show');
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  // JS 슬라이더 (CSS animation 대신)
+  function initSlider(trackEl, speed, reverse) {
+    let pos = reverse ? -trackEl.scrollWidth / 2 : 0;
+    const step = reverse ? 0.4 : -0.4;
+    const limit = trackEl.scrollWidth / 2;
+    let paused = false;
+    trackEl.addEventListener('mouseenter', () => paused = true);
+    trackEl.addEventListener('mouseleave', () => paused = false);
+    function tick() {
+      if (!paused) {
+        pos += step * speed;
+        if (!reverse && pos <= -limit) pos = 0;
+        if (reverse && pos >= 0) pos = -limit;
+        trackEl.style.transform = 'translateX(' + pos + 'px)';
+      }
+      requestAnimationFrame(tick);
+    }
+    trackEl.style.animation = 'none';
+    requestAnimationFrame(tick);
+  }
+  const tracks = document.querySelectorAll('.slider-track');
+  if (tracks[0]) initSlider(tracks[0], 1, false);
+  if (tracks[1]) initSlider(tracks[1], 0.8, true);
+  const ticker = document.querySelector('.ticker-track');
+  if (ticker) initSlider(ticker, 0.6, false);
+
+  // 이메일 JS 생성 (Cloudflare 난독화 우회)
+  const em = ['contact', 'nugget.im'].join('@');
+  document.querySelectorAll('[data-email]').forEach(el => {
+    el.href = 'mailto:' + em + (el.dataset.subject ? '?subject=' + el.dataset.subject : '');
+    if (el.dataset.showtext) el.textContent = em;
+  });
+
+});
+</script>
+</body>
+</html>
