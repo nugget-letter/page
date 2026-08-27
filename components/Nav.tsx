@@ -8,7 +8,7 @@ export function Nav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-[68px] px-6 md:px-[52px] bg-white/96 backdrop-blur-md border-b border-line">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-[68px] px-6 md:px-[52px] bg-white/95 backdrop-blur-md border-b border-line">
       <a href="#hero" aria-label="nugget. 홈으로">
         <Logo className="h-6" />
       </a>

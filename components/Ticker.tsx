@@ -9,7 +9,7 @@ export function Ticker() {
 
   return (
     <div className="overflow-hidden bg-dark py-3">
-      <div className="flex gap-12 whitespace-nowrap animate-[ticker-scroll_24s_linear_infinite]">
+      <div className="flex gap-12 w-max whitespace-nowrap animate-[ticker-scroll_24s_linear_infinite]">
         {looped.map((item, i) => (
           <span key={`${item}-${i}`} className="text-white text-sm font-medium">
             {item}

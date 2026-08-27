@@ -36,7 +36,7 @@ export function Contact() {
   if (status === "success") {
     return (
       <section id="contact" className="py-20 px-6 md:px-[52px] text-center">
-        <p className="font-gmarket text-xl font-bold">문의가 접수되었습니다. 빠르게 연락드릴게요.</p>
+        <p className="font-gmarket text-xl">문의가 접수되었습니다. 빠르게 연락드릴게요.</p>
       </section>
     );
   }
@@ -44,7 +44,7 @@ export function Contact() {
   return (
     <section id="contact" className="py-20 px-6 md:px-[52px]">
       <div className="max-w-[560px] mx-auto">
-        <h2 className="font-gmarket text-[28px] font-bold mb-8">B2B 파트너십 문의</h2>
+        <h2 className="font-gmarket text-[28px] mb-8">B2B 파트너십 문의</h2>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <label className="flex flex-col gap-1.5 text-sm font-medium">
@@ -98,7 +98,11 @@ export function Contact() {
             />
           </label>
 
-          {status === "error" && <p className="text-sm text-red-600">{errorMessage}</p>}
+          {status === "error" && (
+            <p role="alert" className="text-sm text-red-600">
+              {errorMessage}
+            </p>
+          )}
 
           <button
             type="submit"

@@ -11,7 +11,7 @@ export function Hero() {
           {heroContent.eyebrow}
         </span>
 
-        <h1 className="font-gmarket text-[40px] md:text-[68px] font-bold leading-[1.15] tracking-tight mb-6">
+        <h1 className="font-gmarket text-[40px] md:text-[68px] leading-[1.15] tracking-tight mb-6">
           {heroContent.headline}
           <br />
           <span className="bg-grad bg-clip-text text-transparent">{heroContent.highlight}</span>

@@ -4,7 +4,7 @@ export function Testimonials() {
   return (
     <section className="py-20 px-6 md:px-[52px] bg-peach">
       <div className="max-w-[1160px] mx-auto">
-        <h2 className="font-gmarket text-[30px] md:text-[44px] font-bold mb-10">구독자들의 이야기</h2>
+        <h2 className="font-gmarket text-[30px] md:text-[44px] mb-10">구독자들의 이야기</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {testimonials.map((t) => (
             <blockquote key={t.quote} className="bg-white rounded-2xl p-8">

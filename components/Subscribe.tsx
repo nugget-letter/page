@@ -4,7 +4,7 @@ export function Subscribe() {
   return (
     <section id="subscribe" className="py-20 px-6 md:px-[52px] bg-light">
       <div className="max-w-[1160px] mx-auto text-center">
-        <h2 className="font-gmarket text-[28px] md:text-[48px] font-bold mb-4">
+        <h2 className="font-gmarket text-[28px] md:text-[48px] mb-4">
           매일 아침, 너겟으로 시작하세요
         </h2>
         <a

@@ -4,7 +4,7 @@ export function B2BServices() {
   return (
     <section id="services" className="py-20 px-6 md:px-[52px]">
       <div className="max-w-[1160px] mx-auto">
-        <h2 className="font-gmarket text-[30px] md:text-[44px] font-bold mb-3">B2B 콘텐츠 상품</h2>
+        <h2 className="font-gmarket text-[30px] md:text-[44px] mb-3">B2B 콘텐츠 상품</h2>
         <p className="text-mid mb-10">
           기업이 필요한 콘텐츠를 리소스 걱정 없이, 너겟의 제작 노하우로 만들어 드립니다.
         </p>
@@ -15,7 +15,7 @@ export function B2BServices() {
               <span className="text-[10px] font-bold tracking-wide text-orange bg-peach px-2.5 py-0.5 rounded-full">
                 {service.category}
               </span>
-              <h3 className="font-gmarket text-[15px] font-bold mt-3 mb-2">{service.name}</h3>
+              <h3 className="font-gmarket text-[15px] mt-3 mb-2">{service.name}</h3>
               <p className="text-sm text-mid leading-relaxed">{service.description}</p>
             </div>
           ))}

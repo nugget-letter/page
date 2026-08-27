@@ -10,7 +10,7 @@ export function ContentLineup() {
   return (
     <section id="content" className="py-20 px-6 md:px-[52px] bg-light">
       <div className="max-w-[1160px] mx-auto">
-        <h2 className="font-gmarket text-[30px] md:text-[44px] font-bold mb-8">너겟이 만드는 콘텐츠</h2>
+        <h2 className="font-gmarket text-[30px] md:text-[44px] mb-8">너겟이 만드는 콘텐츠</h2>
 
         <div className="flex gap-2 mb-8 flex-wrap">
           {contentCategories.map((cat) => (
@@ -34,7 +34,7 @@ export function ContentLineup() {
               <span className="text-[10px] font-bold tracking-wide text-orange bg-peach px-2.5 py-0.5 rounded-full">
                 {item.meta}
               </span>
-              <h3 className="font-gmarket text-[15px] font-bold mt-3">{item.title}</h3>
+              <h3 className="font-gmarket text-[15px] mt-3">{item.title}</h3>
             </div>
           ))}
         </div>

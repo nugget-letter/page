@@ -9,7 +9,7 @@ export function StatsBand() {
             key={stat.label}
             className={`text-center py-4 ${i < stats.length - 1 ? "md:border-r md:border-white/10" : ""}`}
           >
-            <div className="font-gmarket text-[44px] font-bold bg-grad bg-clip-text text-transparent">
+            <div className="font-gmarket text-[44px] bg-grad bg-clip-text text-transparent">
               {stat.value}
             </div>
             <div className="text-[13px] text-white/45 mt-2">{stat.label}</div>
