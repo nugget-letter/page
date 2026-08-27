@@ -160,3 +160,14 @@ export const careerListing = {
 
 export const subscribeUrl = "https://page.stibee.com/subscriptions/132031";
 export const contactEmail = "contact@nugget.im";
+
+export const companyInfo = {
+  entityName: "주식회사 너겟",
+  registrationNumber: "463-81-03041",
+  privacyOfficer: "이지원",
+};
+
+export const legalLinks = [
+  { label: "이용약관", href: "#" },
+  { label: "개인정보처리방침", href: "#" },
+];

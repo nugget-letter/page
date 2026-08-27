@@ -1,5 +1,5 @@
 import { Logo } from "./Logo";
-import { contactEmail } from "@/lib/content";
+import { companyInfo, contactEmail, legalLinks } from "@/lib/content";
 
 export function Footer() {
   return (
@@ -9,6 +9,18 @@ export function Footer() {
         <div className="text-sm">
           <p>{contactEmail}</p>
           <p className="mt-2">© {new Date().getFullYear()} nugget. All rights reserved.</p>
+          <p className="mt-4 text-xs text-white/40 leading-relaxed">
+            {companyInfo.entityName} · 사업자등록번호 {companyInfo.registrationNumber}
+            <br />
+            개인정보보호책임자: {companyInfo.privacyOfficer}
+          </p>
+          <div className="flex gap-4 mt-3">
+            {legalLinks.map((link) => (
+              <a key={link.label} href={link.href} className="text-xs text-white/40 hover:text-white/60">
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
