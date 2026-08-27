@@ -19,7 +19,7 @@
 
 - **프레임워크:** Next.js (App Router, TypeScript) — 정적 마케팅 페이지지만, 향후 로그인/블로그/채용 같은 앱적 기능 확장을 고려해 선택. 배포는 Vercel.
 - **스타일링:** Tailwind CSS + CSS 변수로 디자인 토큰 관리 (컬러, 그라디언트, 간격). 기존 index.html의 CSS 변수 체계(`--orange #FF6B35`, `--yellow #FFB800`, `--peach #FFF3EC` 등)를 토큰으로 그대로 승계한다.
-- **폰트:** 기존과 동일하게 Google Fonts의 `Gmarket Sans`(제목) + `Noto Sans KR`(본문), `next/font/google`로 로드해 self-host 처리(현재는 외부 CDN 직접 로드 방식).
+- **폰트:** Google Fonts의 `Black Han Sans`(제목) + `Noto Sans KR`(본문), `next/font/google`로 로드해 self-host 처리(현재는 외부 CDN 직접 로드 방식). 기존 `Gmarket Sans`는 Google Fonts에 없는 폰트라 톤이 비슷한 `Black Han Sans`로 대체했다.
 - **도메인:** 가비아(Gabia)에서 관리 중인 `nugget.im`의 A/CNAME 레코드를 Vercel이 안내하는 값으로 교체. 네임서버는 가비아 그대로 유지.
 - **콘텐츠:** 이 단계에서는 블로그·채용 데이터 연동이 없으므로 전 섹션이 정적 컴포넌트다. 외부 데이터 소스는 아직 붙이지 않는다.
 

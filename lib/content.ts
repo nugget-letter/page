@@ -20,7 +20,7 @@ export const heroContent = {
 
 export const stats = [
   { value: "1.5만+", label: "뉴스레터 구독자" },
-  { value: "5배", label: "콘텐츠 도입 후 고객사 MAU 평균 증가" },
+  { value: "5배", label: "콘텐츠 도입 후 고객사 MAU 증가" },
   { value: "38%", label: "뉴스레터 평균 오픈율" },
   { value: "3만+", label: "일일 콘텐츠 뷰 증가" },
 ];
@@ -50,26 +50,59 @@ export const approvedClientLogos = [
 
 export const contentCategories = [
   {
-    id: "daily-news",
-    label: "데일리 경제 뉴스",
+    id: "all",
+    label: "전체",
     items: [
-      { title: "출근길에 읽는 오늘의 경제", meta: "데일리" },
-      { title: "이번 주 꼭 알아야 할 금리 이슈", meta: "데일리" },
+      { title: "32조 추경, 새 정부의 경제 살리기 레슨", meta: "전체" },
+      { title: "임박한 미 대선, 우리나라 경제엔 누가 더 유리할까?", meta: "전체" },
     ],
   },
   {
-    id: "money-tips",
-    label: "재테크 상식",
+    id: "daewang",
+    label: "대왕 너겟",
     items: [
-      { title: "작고 귀여운 월급 굴리는 법", meta: "재테크" },
-      { title: "청년도약계좌 총정리", meta: "재테크" },
+      { title: "일본 여행이 다시 뜨는 이유", meta: "대왕 너겟" },
+      { title: "어닝 서프라이즈인데 주가는 왜 떨어져?", meta: "대왕 너겟" },
     ],
   },
   {
-    id: "bite-news",
-    label: "한입 뉴스",
+    id: "sangsik",
+    label: "경제 상식을 콕콕",
     items: [
-      { title: "5줄로 끝내는 오늘의 경제 뉴스", meta: "한입" },
+      { title: "코인 투자하면서 꼬박꼬박 이자도 받을 수 있다고?", meta: "경제 상식을 콕콕" },
+      { title: "당첨되면 20억? 부동산 '줍줍'이 화제인 이유", meta: "경제 상식을 콕콕" },
+    ],
+  },
+  {
+    id: "hanip",
+    label: "한입 너겟",
+    items: [
+      { title: "산타랠리 타고 다시 오르는 비트코인", meta: "한입 너겟" },
+      { title: "혼다 X 닛산: \"우리 합병해요!\"", meta: "한입 너겟" },
+    ],
+  },
+  {
+    id: "stock",
+    label: "주식",
+    items: [
+      { title: "미국: \"TSMC가 왜 거기서 나와?\"", meta: "주식" },
+      { title: "한때 1등이었던 폭스바겐이 추락한 이유", meta: "주식" },
+    ],
+  },
+  {
+    id: "realestate",
+    label: "부동산",
+    items: [
+      { title: "역대급 세수 펑크에 정부는 기금 영끌?", meta: "부동산" },
+      { title: "한전: \"더는 못 버티겠어\"", meta: "부동산" },
+    ],
+  },
+  {
+    id: "branded",
+    label: "브랜디드콘텐츠",
+    items: [
+      { title: "케이뱅크랑 K-패스해! — 케이뱅크 × 너겟", meta: "브랜디드콘텐츠" },
+      { title: "미국 주식 나도 할 수 있어 수수수수퍼노바 💪 — 미래에셋 × 너겟", meta: "브랜디드콘텐츠" },
     ],
   },
 ];
