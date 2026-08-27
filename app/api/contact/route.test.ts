@@ -1,14 +1,14 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
 
-const sendContactEmailMock = vi.fn();
+const submitContactToSheetMock = vi.fn();
 
-vi.mock("@/lib/email", () => ({
-  sendContactEmail: sendContactEmailMock,
+vi.mock("@/lib/sheets", () => ({
+  submitContactToSheet: submitContactToSheetMock,
 }));
 
 describe("POST /api/contact", () => {
   beforeEach(() => {
-    sendContactEmailMock.mockReset();
+    submitContactToSheetMock.mockReset();
   });
 
   function makeRequest(body: unknown) {
@@ -19,18 +19,18 @@ describe("POST /api/contact", () => {
     });
   }
 
-  it("returns 400 and does not send email when a required field is missing", async () => {
+  it("returns 400 and does not submit to the sheet when a required field is missing", async () => {
     const { POST } = await import("./route");
     const res = await POST(
       makeRequest({ company: "", name: "홍길동", email: "hong@example.com", type: "제휴", message: "안녕" })
     );
 
     expect(res.status).toBe(400);
-    expect(sendContactEmailMock).not.toHaveBeenCalled();
+    expect(submitContactToSheetMock).not.toHaveBeenCalled();
   });
 
-  it("returns 200 and sends the email when the payload is valid", async () => {
-    sendContactEmailMock.mockResolvedValue(undefined);
+  it("returns 200 and submits to the sheet when the payload is valid", async () => {
+    submitContactToSheetMock.mockResolvedValue(undefined);
     const { POST } = await import("./route");
     const payload = {
       company: "테스트 회사",
@@ -44,11 +44,11 @@ describe("POST /api/contact", () => {
     expect(res.status).toBe(200);
     const body = await res.json();
     expect(body).toEqual({ ok: true });
-    expect(sendContactEmailMock).toHaveBeenCalledOnce();
-    expect(sendContactEmailMock).toHaveBeenCalledWith(payload);
+    expect(submitContactToSheetMock).toHaveBeenCalledOnce();
+    expect(submitContactToSheetMock).toHaveBeenCalledWith(payload);
   });
 
-  it("returns 400 and does not send email when the email format is invalid", async () => {
+  it("returns 400 and does not submit to the sheet when the email format is invalid", async () => {
     const { POST } = await import("./route");
     const res = await POST(
       makeRequest({
@@ -61,10 +61,10 @@ describe("POST /api/contact", () => {
     );
 
     expect(res.status).toBe(400);
-    expect(sendContactEmailMock).not.toHaveBeenCalled();
+    expect(submitContactToSheetMock).not.toHaveBeenCalled();
   });
 
-  it("returns 400 and does not send email when a field exceeds its length cap", async () => {
+  it("returns 400 and does not submit to the sheet when a field exceeds its length cap", async () => {
     const { POST } = await import("./route");
     const res = await POST(
       makeRequest({
@@ -77,11 +77,11 @@ describe("POST /api/contact", () => {
     );
 
     expect(res.status).toBe(400);
-    expect(sendContactEmailMock).not.toHaveBeenCalled();
+    expect(submitContactToSheetMock).not.toHaveBeenCalled();
   });
 
-  it("returns 500 when the email provider throws", async () => {
-    sendContactEmailMock.mockRejectedValue(new Error("provider down"));
+  it("returns 500 when the Apps Script submission throws", async () => {
+    submitContactToSheetMock.mockRejectedValue(new Error("sheet unreachable"));
     const { POST } = await import("./route");
     const res = await POST(
       makeRequest({

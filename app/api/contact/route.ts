@@ -1,4 +1,4 @@
-import { sendContactEmail } from "@/lib/email";
+import { submitContactToSheet } from "@/lib/sheets";
 
 type ContactRequestBody = {
   company?: string;
@@ -33,7 +33,7 @@ export async function POST(request: Request): Promise<Response> {
   }
 
   try {
-    await sendContactEmail({
+    await submitContactToSheet({
       company: body.company,
       name: body.name,
       email: body.email,
@@ -42,7 +42,7 @@ export async function POST(request: Request): Promise<Response> {
     });
     return Response.json({ ok: true }, { status: 200 });
   } catch (error) {
-    console.error("[contact] send failed", error);
+    console.error("[contact] submit failed", error);
     return Response.json({ ok: false, error: "전송에 실패했습니다. 잠시 후 다시 시도해주세요." }, { status: 500 });
   }
 }
