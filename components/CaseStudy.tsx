@@ -13,26 +13,30 @@ export function CaseStudy() {
         <div className="text-[10px] tracking-[0.2em] text-white/40 mb-2">CASE STUDY</div>
         <h2 className="text-white text-lg font-bold mb-8">{caseStudy.metricLabel}</h2>
 
-        <div className="flex items-end gap-6" style={{ height: MAX_BAR_HEIGHT + 24 }}>
-          <div className="flex flex-col items-center">
-            <div
-              data-testid="case-bar-before"
-              className="w-9 bg-[#333333] rounded-t"
-              style={{ height: `${beforeHeight}px` }}
-            />
-            <span className="text-white/50 text-xs mt-1.5">도입 전</span>
+        <div className="flex items-end justify-between gap-6" style={{ height: MAX_BAR_HEIGHT + 24 }}>
+          <div className="flex items-end gap-6">
+            <div className="flex flex-col items-center">
+              <div
+                data-testid="case-bar-before"
+                className="w-9 bg-[#333333] rounded-t"
+                style={{ height: `${beforeHeight}px` }}
+              />
+              <span className="text-white/50 text-xs mt-1.5">도입 전</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <div
+                data-testid="case-bar-after"
+                className="w-9 bg-grad rounded-t"
+                style={{ height: `${afterHeight}px` }}
+              />
+              <span className="text-white text-xs mt-1.5 font-bold">
+                도입 후 · <span>{`${multiplier}배`}</span>
+              </span>
+            </div>
           </div>
-          <div className="flex flex-col items-center">
-            <div
-              data-testid="case-bar-after"
-              className="w-9 bg-grad rounded-t"
-              style={{ height: `${afterHeight}px` }}
-            />
-            <span className="text-white text-xs mt-1.5 font-bold">
-              도입 후 · <span>{`${multiplier}배`}</span>
-            </span>
-          </div>
-          <p className="text-white/40 text-[13px] self-center ml-2">{caseStudy.secondaryMetric}</p>
+          <p className="text-white/40 text-[13px] self-center text-right max-w-[220px]">
+            {caseStudy.secondaryMetric}
+          </p>
         </div>
       </div>
     </section>
