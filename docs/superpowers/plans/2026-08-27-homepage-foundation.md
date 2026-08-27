@@ -17,7 +17,7 @@
 - B2B 상품 섹션(`B2BServices`)은 가격을 공개하지 않는다 — 카테고리/설명만 노출, CTA는 "가격 문의하기".
 - `Clients` 섹션은 이미 공개적으로 노출 중인 로고만 사용한다(KB국민은행·카카오·네이버·케이뱅크·미래에셋증권·네이버페이·삼성·삼양). CRM의 미계약/협상중 리드는 어떤 경우에도 노출하지 않는다.
 - 브랜드 컬러 토큰은 기존 값을 그대로 승계한다: `--orange:#FF6B35` `--yellow:#FFB800` `--peach:#FFF3EC` `--peach2:#FFE4D4` `--dark:#1C1C1C` `--mid:#555` `--gray:#999` `--line:#EBEBEB` `--light:#FAF9F7` `--grad: linear-gradient(135deg, #FFB800 0%, #FF6B35 100%)`.
-- 폰트는 Gmarket Sans(제목) + Noto Sans KR(본문), Google Fonts를 통해 로드한다.
+- 폰트는 Black Han Sans(제목) + Noto Sans KR(본문), Google Fonts를 통해 로드한다. (원래 스펙은 Gmarket Sans였으나, Google Fonts에 실존하지 않는 폰트임이 Task 1 구현 중 발견되어 — 기존 imweb 사이트도 같은 이유로 실제로는 로드된 적이 없었다 — 비슷한 톤의 볼드 디스플레이 서체인 Black Han Sans로 대체 확정. 디자인 토큰 키 이름은 `gmarket`/`--font-gmarket`을 그대로 유지한다.)
 - 히어로에 영상은 쓰지 않는다 — CSS 그라디언트 모션만 사용한다.
 - 마스코트(냠냐미)는 이번 개편에 포함하지 않는다.
 - 문의폼은 배포 전 반드시 `contact@nugget.im`으로 실제 이메일이 도착하는지 수동 확인해야 한다(자동 테스트로 대체 불가).
@@ -273,12 +273,15 @@ Expected: FAIL — `app/layout.tsx`가 아직 없어서 모듈을 찾을 수 없
 
 ```tsx
 import type { Metadata } from "next";
-import { Gmarket_Sans, Noto_Sans_KR } from "next/font/google";
+import { Black_Han_Sans, Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 
-const gmarket = Gmarket_Sans({
+// 실제 로드하는 서체는 Black Han Sans다 — "Gmarket Sans"는 Google Fonts에 없는
+// 폰트였고(기존 imweb 사이트도 로드에 실패하고 있었다), 톤이 비슷한 이 폰트로
+// 대체했다. 변수/토큰 이름(gmarket)은 하위 태스크와의 일관성을 위해 유지한다.
+const gmarket = Black_Han_Sans({
   subsets: ["latin"],
-  weight: ["300", "500", "700"],
+  weight: ["400"],
   variable: "--font-gmarket",
 });
 
