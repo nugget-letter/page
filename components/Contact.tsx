@@ -13,18 +13,23 @@ export function Contact() {
     e.preventDefault();
     setStatus("submitting");
 
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-    const body = await res.json();
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const body = await res.json();
 
-    if (res.ok && body.ok) {
-      setStatus("success");
-    } else {
+      if (res.ok && body.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+        setErrorMessage(body.error ?? "전송에 실패했습니다. 잠시 후 다시 시도해주세요.");
+      }
+    } catch {
       setStatus("error");
-      setErrorMessage(body.error ?? "전송에 실패했습니다. 잠시 후 다시 시도해주세요.");
+      setErrorMessage("전송에 실패했습니다. 잠시 후 다시 시도해주세요.");
     }
   }
 
