@@ -1,0 +1,11 @@
+.superpowers/
+node_modules/
+.next/
+.env
+.env.local
+.env*.local
+!.env.example
+next-env.d.ts
+tsconfig.tsbuildinfo
+.vercel
+.env*
