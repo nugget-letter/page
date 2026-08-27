@@ -24,7 +24,8 @@ export async function POST(request: Request): Promise<Response> {
       message: body.message ?? "",
     });
     return Response.json({ ok: true }, { status: 200 });
-  } catch {
+  } catch (error) {
+    console.error("[contact] send failed", error);
     return Response.json({ ok: false, error: "전송에 실패했습니다. 잠시 후 다시 시도해주세요." }, { status: 500 });
   }
 }
