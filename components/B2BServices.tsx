@@ -6,7 +6,7 @@ export function B2BServices() {
       <div className="max-w-[1160px] mx-auto">
         <h2 className="font-gmarket text-[30px] md:text-[44px] mb-3">B2B 콘텐츠 상품</h2>
         <p className="text-mid mb-10">
-          기업이 필요한 콘텐츠를 리소스 걱정 없이, 너겟의 제작 노하우로 만들어 드립니다.
+          콘텐츠는 만들고 싶은데 손이 부족한 팀을 위해 — 기획부터 제작까지 너겟이 대신합니다.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
