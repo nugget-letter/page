@@ -9,8 +9,12 @@ export type ContactPayload = {
 };
 
 export async function sendContactEmail(payload: ContactPayload): Promise<void> {
+  const to = process.env.CONTACT_TO_EMAIL;
+  if (!to) {
+    throw new Error("CONTACT_TO_EMAIL is not set");
+  }
+
   const resend = new Resend(process.env.RESEND_API_KEY);
-  const to = process.env.CONTACT_TO_EMAIL!;
 
   const { error } = await resend.emails.send({
     from: "nugget.im 문의폼 <no-reply@nugget.im>",

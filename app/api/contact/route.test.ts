@@ -32,20 +32,52 @@ describe("POST /api/contact", () => {
   it("returns 200 and sends the email when the payload is valid", async () => {
     sendContactEmailMock.mockResolvedValue(undefined);
     const { POST } = await import("./route");
+    const payload = {
+      company: "테스트 회사",
+      name: "홍길동",
+      email: "hong@example.com",
+      type: "제휴 문의",
+      message: "안녕하세요",
+    };
+    const res = await POST(makeRequest(payload));
+
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    expect(body).toEqual({ ok: true });
+    expect(sendContactEmailMock).toHaveBeenCalledOnce();
+    expect(sendContactEmailMock).toHaveBeenCalledWith(payload);
+  });
+
+  it("returns 400 and does not send email when the email format is invalid", async () => {
+    const { POST } = await import("./route");
+    const res = await POST(
+      makeRequest({
+        company: "테스트 회사",
+        name: "홍길동",
+        email: "not-an-email",
+        type: "제휴 문의",
+        message: "안녕하세요",
+      })
+    );
+
+    expect(res.status).toBe(400);
+    expect(sendContactEmailMock).not.toHaveBeenCalled();
+  });
+
+  it("returns 400 and does not send email when a field exceeds its length cap", async () => {
+    const { POST } = await import("./route");
     const res = await POST(
       makeRequest({
         company: "테스트 회사",
         name: "홍길동",
         email: "hong@example.com",
         type: "제휴 문의",
-        message: "안녕하세요",
+        message: "a".repeat(5001),
       })
     );
 
-    expect(res.status).toBe(200);
-    const body = await res.json();
-    expect(body).toEqual({ ok: true });
-    expect(sendContactEmailMock).toHaveBeenCalledOnce();
+    expect(res.status).toBe(400);
+    expect(sendContactEmailMock).not.toHaveBeenCalled();
   });
 
   it("returns 500 when the email provider throws", async () => {

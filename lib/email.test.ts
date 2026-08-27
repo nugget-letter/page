@@ -49,4 +49,38 @@ describe("sendContactEmail", () => {
       })
     ).rejects.toThrow("provider down");
   });
+
+  it("throws a clear error and never calls the Resend client when CONTACT_TO_EMAIL is unset", async () => {
+    delete process.env.CONTACT_TO_EMAIL;
+    const { sendContactEmail } = await import("./email");
+
+    await expect(
+      sendContactEmail({
+        company: "테스트 회사",
+        name: "홍길동",
+        email: "hong@example.com",
+        type: "제휴 문의",
+        message: "안녕하세요",
+      })
+    ).rejects.toThrow("CONTACT_TO_EMAIL is not set");
+
+    expect(sendMock).not.toHaveBeenCalled();
+  });
+
+  it("throws a clear error and never calls the Resend client when CONTACT_TO_EMAIL is empty", async () => {
+    process.env.CONTACT_TO_EMAIL = "";
+    const { sendContactEmail } = await import("./email");
+
+    await expect(
+      sendContactEmail({
+        company: "테스트 회사",
+        name: "홍길동",
+        email: "hong@example.com",
+        type: "제휴 문의",
+        message: "안녕하세요",
+      })
+    ).rejects.toThrow("CONTACT_TO_EMAIL is not set");
+
+    expect(sendMock).not.toHaveBeenCalled();
+  });
 });
