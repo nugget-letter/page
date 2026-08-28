@@ -10,7 +10,7 @@ const config: Config = {
         peach: "#FFF3EC",
         peach2: "#FFE4D4",
         dark: "#1C1C1C",
-        mid: "#555555",
+        mid: "#333333",
         gray: "#999999",
         line: "#EBEBEB",
         light: "#FAF9F7",

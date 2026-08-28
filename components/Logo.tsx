@@ -1,17 +1,15 @@
 type LogoProps = {
-  variant?: "color" | "white";
   className?: string;
 };
 
-export function Logo({ variant = "color", className }: LogoProps) {
-  const src = `/logo/nugget-logo-${variant}.svg`;
+export function Logo({ className }: LogoProps) {
   return (
     <img
-      src={src}
+      src="/logo/nugget-badge.png"
       alt="nugget."
-      width={140}
-      height={50}
-      className={["w-auto", className].filter(Boolean).join(" ")}
+      width={40}
+      height={40}
+      className={["aspect-square object-contain", className].filter(Boolean).join(" ")}
     />
   );
 }

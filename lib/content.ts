@@ -29,7 +29,7 @@ export const caseStudy = {
   before: 100000,
   after: 500000,
   unit: "MAU",
-  metricLabel: "콘텐츠 도입 후, 고객사 MAU가 달라졌습니다",
+  metricLabel: "콘텐츠 하나로, 고객사 MAU가 달라졌습니다",
   secondaryMetric: "일일 콘텐츠 View 수 3만 명 이상 증가",
 };
 
@@ -46,6 +46,16 @@ export const approvedClientLogos = [
   "네이버페이",
   "삼성",
   "삼양",
+  "모인",
+  "PRAP",
+  "퀀트랙",
+  "AKROS",
+  "문화체육관광부",
+  "Travel Wallet",
+  "teamwink",
+  "BBRIC",
+  "동양북스",
+  "SIL",
 ];
 
 export const contentCategories = [
@@ -109,27 +119,27 @@ export const contentCategories = [
 
 export const b2bServices = [
   {
-    category: "콘텐츠 제휴",
+    category: "데일리 뉴스",
     name: "데일리 경제 뉴스 콘텐츠",
     description: "경제를 어려워하는 사람들도 쉽게 이해할 수 있도록 꼭 필요한 뉴스만 풀어 전달합니다.",
   },
   {
-    category: "콘텐츠 제휴",
+    category: "재테크",
     name: "재테크 상식 콘텐츠",
     description: "다양한 재테크 방법과 경제 정책을 소개하고 실행 방법까지 알려주는 콘텐츠입니다.",
   },
   {
-    category: "콘텐츠 제휴",
+    category: "한입 뉴스",
     name: "한입 뉴스 콘텐츠",
     description: "하루에 꼭 알아야 하는 경제 뉴스 5~6가지를 간략하게 정리해 전달합니다.",
   },
   {
-    category: "콘텐츠 제휴",
+    category: "제작 대행",
     name: "오리지널 콘텐츠 제작",
     description: "기업이 필요한 콘텐츠를 너겟의 톤앤매너와 노하우를 더해 맞춤 제작합니다.",
   },
   {
-    category: "콘텐츠 제휴",
+    category: "운영 대행",
     name: "콘텐츠 제작 및 운영 대행",
     description: "기업의 콘텐츠 팀을 대신해 기획/제작/운영을 전체적으로 대행합니다.",
   },
@@ -144,11 +154,27 @@ export const testimonials = [
   // 실제 구독자 인용은 콘텐츠팀이 검토 후 교체할 예정 — 아래는 형식 확인용 샘플
   {
     quote: "경제 뉴스가 이렇게 쉽게 읽힐 수 있다는 걸 처음 알았어요.",
-    source: "구독자 · 사회초년생",
+    source: "사회초년생",
   },
   {
     quote: "출근길 5분이면 오늘 알아야 할 경제 이슈가 다 정리돼요.",
-    source: "구독자 · 2년차 직장인",
+    source: "스타트업 마케터",
+  },
+  {
+    quote: "경제 뉴스라면 늘 어려웠는데, 너겟만은 끝까지 읽게 돼요.",
+    source: "취준생",
+  },
+  {
+    quote: "친구가 추천해줘서 구독했는데, 이제 제가 주변에 추천하고 있어요.",
+    source: "프리랜서 디자이너",
+  },
+  {
+    quote: "경제 공부한다고 마음만 먹고 못 했는데, 매일 아침 자연스럽게 하게 됐어요.",
+    source: "대학원생",
+  },
+  {
+    quote: "재테크 얘기 나오면 이제 대화에 낄 수 있어요.",
+    source: "육아휴직 중인 워킹맘",
   },
 ];
 

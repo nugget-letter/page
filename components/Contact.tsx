@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { ScrollReveal } from "./ScrollReveal";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -44,7 +45,9 @@ export function Contact() {
   return (
     <section id="contact" className="py-20 px-6 md:px-[52px]">
       <div className="max-w-[560px] mx-auto">
-        <h2 className="font-gmarket text-[28px] mb-8">B2B 파트너십 문의</h2>
+        <ScrollReveal>
+          <h2 className="font-gmarket text-[32px] md:text-[48px] mb-8">B2B 파트너십 문의</h2>
+        </ScrollReveal>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <label className="flex flex-col gap-1.5 text-sm font-medium">
@@ -107,7 +110,7 @@ export function Contact() {
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="bg-grad text-white rounded-full px-[30px] py-[15px] text-[15px] font-bold disabled:opacity-60"
+            className="bg-dark text-white rounded-full px-[30px] py-[15px] text-[15px] font-bold disabled:opacity-60"
           >
             문의 보내기
           </button>

@@ -18,6 +18,7 @@ describe("content data", () => {
       caseStudy.metricLabel,
       caseStudy.secondaryMetric,
       ...b2bServices.map((s) => `${s.name} ${s.description}`),
+      ...approvedClientLogos,
     ];
     for (const word of forbidden) {
       for (const text of haystacks) {
@@ -26,7 +27,7 @@ describe("content data", () => {
     }
   });
 
-  it("keeps the approved client logo list to only publicly-disclosed clients", () => {
+  it("keeps the approved client logo list to only publicly-disclosed clients (old site's logo wall, minus the competitor)", () => {
     const approved = new Set([
       "KB국민은행",
       "카카오",
@@ -36,10 +37,21 @@ describe("content data", () => {
       "네이버페이",
       "삼성",
       "삼양",
+      "모인",
+      "PRAP",
+      "퀀트랙",
+      "AKROS",
+      "문화체육관광부",
+      "Travel Wallet",
+      "teamwink",
+      "BBRIC",
+      "동양북스",
+      "SIL",
     ]);
     for (const name of approvedClientLogos) {
       expect(approved.has(name)).toBe(true);
     }
+    expect(approvedClientLogos).not.toContain("뉴닉");
   });
 
   it("never attaches a price field to a B2B service entry", () => {

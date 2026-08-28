@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="bg-dark text-white/60 py-12 px-6 md:px-[52px]">
       <div className="max-w-[1160px] mx-auto flex flex-col md:flex-row justify-between gap-6">
-        <Logo variant="white" className="h-6" />
+        <Logo className="h-10 rounded-lg shrink-0" />
         <div className="text-sm">
           <p>{contactEmail}</p>
           <p className="mt-2">© {new Date().getFullYear()} nugget. All rights reserved.</p>
